@@ -30,13 +30,13 @@ function imprimirCiudadesOrdenadas($arr) {
 }
 
 function contarCiudadesPorInicial($arr, $letra ){
-    $c= 0;
-    $city = $arr;
-    if ($city == 'S'){
-        $c++;
+    $contador = 0;
+    foreach ($arr as $ciudad) {
+        if (strtoupper($ciudad[0]) === strtoupper($letra)) {
+            $contador++;
+        }
     }
-    echo "<br>Ciudades cantidad de ciudades con letras $letra = ";
-    echo $c;
+    echo "<br> cantidad de ciudades con la letras $letra = $contador";
 }
 
 // 8. Llamar a la función
