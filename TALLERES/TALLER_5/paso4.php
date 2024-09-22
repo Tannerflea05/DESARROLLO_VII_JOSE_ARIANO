@@ -130,25 +130,43 @@ function buscarLibros($biblioteca, $termino) {
 }
 $resultadosBusqueda = buscarLibros($biblioteca, "principito");
 echo $resultadosBusqueda;
-// Ejemplo de uso de la función de búsqueda (descomenta para probar)
-// $resultadosBusqueda = buscarLibros($biblioteca, "quijote");
-// echo "Resultados de búsqueda para 'quijote':\n";
-// imprimirBiblioteca($resultadosBusqueda);
+
 
 // 11. TAREA: Crea una función que genere un reporte de la biblioteca
 // El reporte debe incluir: número total de libros, número de libros prestados,
 // número de libros por género, y el autor con más libros en la biblioteca
 function generarReporteBiblioteca($biblioteca) {
-    // Tu código aquí
+$librosprestados = 0;
+$conteoGeneros = [];
+foreach($biblioteca as $bio){
+    $cantidadlibros = count($bio);
+    if($bio["prestado"]== true ){
+        $librosprestados++;
+    }
+    $genero = $bio["genero"];
+    if (isset($conteoGeneros[$genero])) {
+        $conteoGeneros[$genero]++;
+    } else {
+        $conteoGeneros[$genero] = 1;
+    }
+    
+    
+}    
+$reporte = "<br>Cantidad de libros:".$cantidadlibros."<br>Cantidad de libros prestados: ".$librosprestados."<br>";
+foreach($conteoGeneros as $genero => $cantidad){
+    $reporte .= "Genero : $genero, cantidad de libros: $cantidad <br>";
+}
+return $reporte;
 }
 
+
 // Ejemplo de uso de la función de reporte (descomenta para probar)
-// echo "Reporte de la Biblioteca:\n";
-// print_r(generarReporteBiblioteca($biblioteca));
+echo "<br>Reporte de la Biblioteca:\n";
+print_r(generarReporteBiblioteca($biblioteca));
 
 
 
 
-
-
+//usort
+//array_filter
 ?>
