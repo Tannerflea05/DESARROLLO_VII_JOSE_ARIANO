@@ -57,15 +57,29 @@ foreach ($conteoCalificaciones as $letra => $cantidad) {
 // (aquellos con un promedio menor a 75) y otra que liste a los estudiantes de honor
 // (aquellos con un promedio de 90 o más).
 // Tu código aquí
-function tutoriaNecesaria($estudiantes){
-    foreach ($estudiantes as $estudiante);
-    $promediobajo = calcularPromedio($estudiante ["calificaciones"]);
-    $estudiante["promedio"] = $promediobajo;
-    if($estudiante < 75){
-        return $estudiante["nombre"];
+function tutoriaNecesaria($estudiantes) {
+    $tutoria = [];
+    foreach ($estudiantes as $estudiante) {
+        $promediobajo = calcularPromedio($estudiante["calificaciones"]);
+        if ($promediobajo < 75) {
+            $tutoria[] = $estudiante["nombre"];
+        }
     }
+    return $tutoria;
 }
+$tutores = tutoriaNecesaria($estudiantes);
+echo "<br>Estudiantes que necesitan tutorias: ". implode(", ", $tutores);
 
-echo "<br> estudiantes que necesitan tutorias" . tutoriaNecesaria($estudiantes);
-?>
+function estudiantesHonor($estudiantes) {
+    $honores = [];
+    foreach ($estudiantes as $estudiante){
+        $promedioalto = calcularPromedio($estudiante["calificaciones"]);
+        if($promedioalto > 90){
+            $honores[] = $estudiante["nombre"];
+        }
         
+    }
+    return $honores;
+}
+$honor = estudiantesHonor($estudiantes);
+echo "<br>Estudiantes de honor: " .  implode(", ", $honor);
